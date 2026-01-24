@@ -182,19 +182,41 @@ def train_model(model, train_loader, val_loader, optimizer, criterion, device, e
     # ------------------------
     # SAVE TRAIN–VAL GRAPH
     # ------------------------
+    # ------------------------
+    # SAVE TRAIN–VAL GRAPH
+    # ------------------------
     epochs_range = range(1, epochs + 1)
 
-    plt.figure()
-    plt.plot(epochs_range, train_losses, label="Train Loss")
-    plt.plot(epochs_range, val_accuracies, label="Validation Accuracy")
+    fig, ax1 = plt.subplots()
 
-    plt.xlabel("Epochs")
-    plt.ylabel("Metric Value")
-    plt.title("Training Loss vs Validation Accuracy")
-    plt.legend()
+    # Plot Train Loss (left axis)
+    ax1.plot(epochs_range, train_losses, label="Train Loss")
+    ax1.set_xlabel("Epochs")
+    ax1.set_ylabel("Loss")
+
+    # Plot Validation Accuracy (right axis)
+    ax2 = ax1.twinx()
+    ax2.plot(epochs_range, val_accuracies, label="Validation Accuracy")
+    ax2.set_ylabel("Accuracy (%)")
+
+    # ✅ Auto-adjust accuracy axis range
+    acc_min = min(val_accuracies)
+    acc_max = max(val_accuracies)
+
+    margin = 0.5  # zoom factor
+    ax2.set_ylim(acc_min - margin, acc_max + margin)
+
+    # Title
+    plt.title("Training Loss vs Validation Accuracy (Zoomed Accuracy Scale)")
+
+    # Legends
+    ax1.legend(loc="upper left")
+    ax2.legend(loc="upper right")
 
     plt.savefig(save_path)
     plt.close()
+
+
 
     return (time.time() - start) * 1000
 
@@ -280,6 +302,8 @@ def run_dl_experiments():
                                         "flops": flops,
                                         "plot_saved": plot_path
                                     }
+                                    
+                                    torch.save(model.state_dict(),'best_model.pt')
 
                                     print(result)
                                     stream_write_json(result, DL_RESULTS_PATH)
