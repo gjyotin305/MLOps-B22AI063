@@ -1,6 +1,13 @@
 # MLOps-B22AI063
 MLOps-Assignments 
 
+Name: Jyotin Goel
+Roll Number: B22AI063
+Email: b22ai063@iitj.ac.in
+
+Github Link: https://github.com/gjyotin305/MLOps-B22AI063/tree/assignment-1
+
+
 ## Question 1 
 
 ### Part A: MNIST and FashionMNIST ABLATIONS
