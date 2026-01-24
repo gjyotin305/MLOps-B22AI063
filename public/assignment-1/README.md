@@ -4,10 +4,6 @@ This is a sample assignment. Replace this content with your actual assignment de
 
 ## Objectives
 
-- Learn how to structure data in JSONL format
-- Practice reading and parsing structured data
-- Understand the basics of data visualization
-
 ## Instructions
 
 1. Review the `samples.jsonl` file
