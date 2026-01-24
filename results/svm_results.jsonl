@@ -1,0 +1,4 @@
+{"dataset": "MNIST", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 95.94, "train_time_ms": 7150.619268417358}
+{"dataset": "MNIST", "kernel": "poly", "train_samples": 10000, "test_accuracy": 95.15, "train_time_ms": 7986.793041229248}
+{"dataset": "FashionMNIST", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 85.31, "train_time_ms": 8506.860494613647}
+{"dataset": "FashionMNIST", "kernel": "poly", "train_samples": 10000, "test_accuracy": 81.66, "train_time_ms": 7345.852613449097}

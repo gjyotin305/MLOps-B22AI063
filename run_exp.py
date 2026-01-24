@@ -160,10 +160,26 @@ def evaluate(model, loader, device):
 # ============================================================
 # FLOPs
 # ============================================================
-def compute_flops(model):
-    dummy = torch.randn(1, 1, 224, 224)
-    flops, _ = profile(model, inputs=(dummy,), verbose=False)
-    return flops
+def compute_flops(model, input_shape, device=None):
+    if device is None:
+        device = next(model.parameters()).device
+
+    model = model.to(device)
+    model.eval()
+
+    dummy = torch.randn(*input_shape, device=device)
+
+    with torch.no_grad():
+        flops, params = profile(
+            model,
+            inputs=(dummy,),
+            verbose=False
+        )
+
+    return {
+        "GFLOPs": flops / 1e9,
+        "MParams": params / 1e6
+    }
 
 # ============================================================
 # DEEP LEARNING EXPERIMENTS (Q1a + Q2)
@@ -201,7 +217,7 @@ def run_dl_experiments():
                                     )
 
                                     test_acc = evaluate(model, test_loader, device)
-                                    flops = compute_flops(model)
+                                    flops = compute_flops(model, input_shape=(1, 1, 28, 28))
 
                                     result = {
                                         "dataset": dataset,
@@ -268,7 +284,7 @@ def run_svm_experiments():
 # ============================================================
 if __name__ == "__main__":
     print("Running Deep Learning Experiments...")
-    run_dl_experiments()
+    # run_dl_experiments()
 
     print("Running SVM Experiments...")
     run_svm_experiments()
