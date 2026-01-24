@@ -3,8 +3,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronRight, Search, Copy, Check } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ChevronDown, ChevronRight, Search, Copy, Check, BarChart3 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { JsonlAnalytics } from "./JsonlAnalytics";
 
 interface JsonlViewerProps {
   data: object[];
@@ -133,6 +135,40 @@ const JsonNode = ({ data, depth = 0, isLast = true }: JsonNodeProps) => {
 const ITEMS_PER_PAGE = 20;
 
 export const JsonlViewer = ({ data }: JsonlViewerProps) => {
+
+  if (data.length === 0) {
+    return (
+      <div className="text-center py-8 text-muted-foreground">
+        No JSONL data found
+      </div>
+    );
+  }
+
+  return (
+    <Tabs defaultValue="viewer" className="space-y-4">
+      <TabsList>
+        <TabsTrigger value="viewer" className="flex items-center gap-2">
+          <Search className="h-4 w-4" />
+          Viewer
+        </TabsTrigger>
+        <TabsTrigger value="analytics" className="flex items-center gap-2">
+          <BarChart3 className="h-4 w-4" />
+          Analytics
+        </TabsTrigger>
+      </TabsList>
+
+      <TabsContent value="viewer" className="space-y-4">
+        <ViewerTab data={data} />
+      </TabsContent>
+
+      <TabsContent value="analytics" className="space-y-4">
+        <JsonlAnalytics data={data} />
+      </TabsContent>
+    </Tabs>
+  );
+};
+
+const ViewerTab = ({ data }: { data: object[] }) => {
   const [search, setSearch] = useState("");
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
@@ -158,14 +194,6 @@ export const JsonlViewer = ({ data }: JsonlViewerProps) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  if (data.length === 0) {
-    return (
-      <div className="text-center py-8 text-muted-foreground">
-        No JSONL data found
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-4">

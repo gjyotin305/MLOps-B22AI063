@@ -80,7 +80,7 @@
 {"dataset": "FashionMNIST", "model": "resnet34", "device": "cuda", "batch_size": 16, "optimizer": "adam", "learning_rate": 0.001, "epochs": 5, "pin_memory": true, "use_amp": true, "test_accuracy": 89.32, "train_time_ms": 1789541.9375896454, "flops": {"GFLOPs": 0.069921536, "MParams": 21.28353}}
 {"dataset": "FashionMNIST", "model": "resnet34", "device": "cuda", "batch_size": 32, "optimizer": "sgd", "learning_rate": 0.001, "epochs": 5, "pin_memory": true, "use_amp": true, "test_accuracy": 85.69, "train_time_ms": 627229.3815612793, "flops": {"GFLOPs": 0.069921536, "MParams": 21.28353}}
 {"dataset": "FashionMNIST", "model": "resnet34", "device": "cuda", "batch_size": 32, "optimizer": "adam", "learning_rate": 0.001, "epochs": 5, "pin_memory": true, "use_amp": true, "test_accuracy": 91.42, "train_time_ms": 1136054.6760559082, "flops": {"GFLOPs": 0.069921536, "MParams": 21.28353}}
-{"dataset": "MNIST", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 95.94, "train_time_ms": 7150.619268417358}
-{"dataset": "MNIST", "kernel": "poly", "train_samples": 10000, "test_accuracy": 95.15, "train_time_ms": 7986.793041229248}
-{"dataset": "FashionMNIST", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 85.31, "train_time_ms": 8506.860494613647}
-{"dataset": "FashionMNIST", "kernel": "poly", "train_samples": 10000, "test_accuracy": 81.66, "train_time_ms": 7345.852613449097}
+{"dataset": "MNIST", "model": "svm-rbf", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 95.94, "train_time_ms": 7921.43988609314}
+{"dataset": "MNIST", "model": "svm-poly", "kernel": "poly", "train_samples": 10000, "test_accuracy": 95.15, "train_time_ms": 8648.066520690918}
+{"dataset": "FashionMNIST", "model": "svm-rbf", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 85.31, "train_time_ms": 8499.988079071045}
+{"dataset": "FashionMNIST", "model": "svm-poly", "kernel": "poly", "train_samples": 10000, "test_accuracy": 81.66, "train_time_ms": 8452.374458312988}
