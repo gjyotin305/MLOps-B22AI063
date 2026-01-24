@@ -15,13 +15,11 @@ from tqdm import tqdm
 # ============================================================
 # CONFIG
 # ============================================================
-# DATASETS = ["MNIST", "FashionMNIST"]
-
-DATASETS = ["FashionMNIST"]
+DATASETS = ["MNIST", "FashionMNIST"]
 
 
 MODELS = {
-    # "resnet18": models.resnet18,
+    "resnet18": models.resnet18,
     "resnet34": models.resnet34,
     "resnet50": models.resnet50
 }
@@ -115,6 +113,7 @@ def build_model(model_name):
 # TRAINING
 # ============================================================
 def train_model(model, loader, optimizer, criterion, device, epochs):
+    model = torch.compile(model)
     model.train()
     scaler = GradScaler(enabled=USE_AMP)
 
@@ -276,6 +275,7 @@ def run_svm_experiments():
 
             result = {
                 "dataset": dataset_name,
+                "model": f"svm-{kernel}",
                 "kernel": kernel,
                 "train_samples": 10000,
                 "test_accuracy": acc,
@@ -291,6 +291,6 @@ if __name__ == "__main__":
     run_dl_experiments()
 
     print("Running SVM Experiments...")
-    # run_svm_experiments()
+    run_svm_experiments()
 
     print("All experiments completed.")
