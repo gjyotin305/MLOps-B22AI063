@@ -1,11 +1,16 @@
-# MLOps-B22AI063
-MLOps-Assignments 
+# MLOps Assignments — B22AI063
 
-Name: Jyotin Goel
-Roll Number: B22AI063
-Email: b22ai063@iitj.ac.in
+**Name:** Jyotin Goel  
+**Roll Number:** B22AI063  
+**Email:** [b22ai063@iitj.ac.in](mailto:b22ai063@iitj.ac.in)
 
-Github Link: https://github.com/gjyotin305/MLOps-B22AI063/tree/assignment-1
+## Links
+
+- **Colab Notebook:**  
+  [Open in Google Colab](https://colab.research.google.com/drive/1yj9zeU21TZWWyFgv6Nvk6e4uNrKTKLmc?usp=sharing)
+
+- **GitHub Repository:**  
+  [View Assignment on GitHub](https://github.com/gjyotin305/MLOps-B22AI063/tree/assignment-1)
 
 
 ## Question 1 
