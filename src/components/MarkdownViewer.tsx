@@ -12,14 +12,17 @@ export const MarkdownViewer = ({ content }: MarkdownViewerProps) => {
     let inCodeBlock = false;
     let codeContent: string[] = [];
     let codeLanguage = "";
+    let i = 0;
 
-    lines.forEach((line, index) => {
+    while (i < lines.length) {
+      const line = lines[i];
+
       // Code block start/end
       if (line.startsWith("```")) {
         if (inCodeBlock) {
           elements.push(
             <pre
-              key={index}
+              key={elements.length}
               className="bg-muted p-4 rounded-lg overflow-x-auto my-4 text-sm"
             >
               <code className="text-foreground">{codeContent.join("\n")}</code>
@@ -31,86 +34,158 @@ export const MarkdownViewer = ({ content }: MarkdownViewerProps) => {
           inCodeBlock = true;
           codeLanguage = line.slice(3);
         }
-        return;
+        i++;
+        continue;
       }
 
       if (inCodeBlock) {
         codeContent.push(line);
-        return;
+        i++;
+        continue;
+      }
+
+      // Check for table (table starts with | and has header separator on next line)
+      if (line.trim().startsWith("|") && i + 1 < lines.length) {
+        const nextLine = lines[i + 1];
+        if (nextLine.trim().startsWith("|") && /^[\s\|\-:]+$/.test(nextLine)) {
+          // Parse table
+          const tableRows: string[][] = [];
+          let j = i;
+          
+          // Parse all table rows
+          while (j < lines.length && lines[j].trim().startsWith("|")) {
+            const cells = lines[j]
+              .split("|")
+              .slice(1, -1)
+              .map(cell => cell.trim());
+            tableRows.push(cells);
+            j++;
+          }
+
+          // Skip separator row and render table
+          if (tableRows.length > 1) {
+            const headerRow = tableRows[0];
+            const bodyRows = tableRows.slice(2); // Skip header and separator
+
+            elements.push(
+              <div key={elements.length} className="overflow-x-auto my-4">
+                <table className="w-full border-collapse border border-border">
+                  <thead>
+                    <tr className="bg-muted">
+                      {headerRow.map((cell, idx) => (
+                        <th
+                          key={idx}
+                          className="border border-border px-4 py-2 text-left font-semibold text-foreground"
+                        >
+                          {parseInline(cell)}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bodyRows.map((row, rowIdx) => (
+                      <tr key={rowIdx} className="hover:bg-muted/50">
+                        {row.map((cell, cellIdx) => (
+                          <td
+                            key={cellIdx}
+                            className="border border-border px-4 py-2 text-foreground"
+                          >
+                            {parseInline(cell)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+
+            i = j;
+            continue;
+          }
+        }
       }
 
       // Empty line
       if (!line.trim()) {
-        elements.push(<div key={index} className="h-4" />);
-        return;
+        elements.push(<div key={elements.length} className="h-4" />);
+        i++;
+        continue;
       }
 
       // Headers
       if (line.startsWith("# ")) {
         elements.push(
-          <h1 key={index} className="text-3xl font-bold mt-6 mb-4 text-foreground">
+          <h1 key={elements.length} className="text-3xl font-bold mt-6 mb-4 text-foreground">
             {parseInline(line.slice(2))}
           </h1>
         );
-        return;
+        i++;
+        continue;
       }
       if (line.startsWith("## ")) {
         elements.push(
-          <h2 key={index} className="text-2xl font-semibold mt-5 mb-3 text-foreground">
+          <h2 key={elements.length} className="text-2xl font-semibold mt-5 mb-3 text-foreground">
             {parseInline(line.slice(3))}
           </h2>
         );
-        return;
+        i++;
+        continue;
       }
       if (line.startsWith("### ")) {
         elements.push(
-          <h3 key={index} className="text-xl font-semibold mt-4 mb-2 text-foreground">
+          <h3 key={elements.length} className="text-xl font-semibold mt-4 mb-2 text-foreground">
             {parseInline(line.slice(4))}
           </h3>
         );
-        return;
+        i++;
+        continue;
       }
 
       // Bullet points
       if (line.match(/^[\-\*]\s/)) {
         elements.push(
-          <li key={index} className="ml-4 list-disc text-foreground">
+          <li key={elements.length} className="ml-4 list-disc text-foreground">
             {parseInline(line.slice(2))}
           </li>
         );
-        return;
+        i++;
+        continue;
       }
 
       // Numbered list
       if (line.match(/^\d+\.\s/)) {
         elements.push(
-          <li key={index} className="ml-4 list-decimal text-foreground">
+          <li key={elements.length} className="ml-4 list-decimal text-foreground">
             {parseInline(line.replace(/^\d+\.\s/, ""))}
           </li>
         );
-        return;
+        i++;
+        continue;
       }
 
       // Blockquote
       if (line.startsWith("> ")) {
         elements.push(
           <blockquote
-            key={index}
+            key={elements.length}
             className="border-l-4 border-primary pl-4 italic text-muted-foreground my-2"
           >
             {parseInline(line.slice(2))}
           </blockquote>
         );
-        return;
+        i++;
+        continue;
       }
 
       // Regular paragraph
       elements.push(
-        <p key={index} className="text-foreground leading-relaxed">
+        <p key={elements.length} className="text-foreground leading-relaxed">
           {parseInline(line)}
         </p>
       );
-    });
+      i++;
+    }
 
     return elements;
   };
