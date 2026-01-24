@@ -30,18 +30,18 @@ MLOps-Assignments
 
 ## Question 2
 
-| Model     | Batch Size | Optimizer |     LR | Epochs | pin_memory | Test Accuracy (%) | Train Time (ms) | FLOPs (GFLOPs) | Params (M) |
-| --------- | ---------: | --------- | -----: | -----: | ---------: | ----------------: | --------------: | -------------: | ---------: |
-| ResNet-18 |         16 | Adam      |  0.001 |      5 |       True |             92.07 |         407,906 |         0.0332 |      11.18 |
-| ResNet-18 |         16 | Adam      |  0.001 |     15 |      False |             92.66 |       1,233,524 |         0.0332 |      11.18 |
-| ResNet-18 |         16 | Adam      |  0.001 |     15 |       True |             91.88 |       1,237,956 |         0.0332 |      11.18 |
-| ResNet-18 |         16 | Adam      | 0.0001 |      5 |      False |             92.27 |         459,555 |         0.0332 |      11.18 |
-| ResNet-18 |         16 | Adam      | 0.0001 |      5 |       True |             92.16 |         446,441 |         0.0332 |      11.18 |
-| ResNet-34 |         16 | SGD       |  0.001 |      5 |       True |             91.81 |         735,832 |         0.0699 |      21.28 |
-| ResNet-34 |         16 | Adam      |  0.001 |      5 |       True |             89.32 |       1,789,542 |         0.0699 |      21.28 |
-| ResNet-34 |         32 | SGD       |  0.001 |      5 |       True |             85.69 |         627,229 |         0.0699 |      21.28 |
-| ResNet-34 |         32 | Adam      |  0.001 |      5 |       True |             91.42 |       1,136,055 |         0.0699 |      21.28 |
-| ResNet-50 |         16 | SGD       |  0.001 |      5 |       True |             90.73 |       1,899,157 |         0.0788 |      23.52 |
+| Compute | Model     | Batch Size | Optimizer |     LR | Epochs | pin_memory | Test Accuracy (%) | Train Time (ms) | FLOPs (GFLOPs) | Params (M) |
+| ------- | --------- | ---------: | --------- | -----: | -----: | ---------: | ----------------: | --------------: | -------------: | ---------: |
+| GPU     | ResNet-18 |         16 | Adam      |  0.001 |      5 |       True |             92.07 |         407,906 |         0.0332 |      11.18 |
+| CPU     | ResNet-18 |         16 | Adam      |  0.001 |     15 |      False |             92.66 |       1,233,524 |         0.0332 |      11.18 |
+| GPU     | ResNet-18 |         16 | Adam      |  0.001 |     15 |       True |             91.88 |       1,237,956 |         0.0332 |      11.18 |
+| CPU     | ResNet-18 |         16 | Adam      | 0.0001 |      5 |      False |             92.27 |         459,555 |         0.0332 |      11.18 |
+| GPU     | ResNet-18 |         16 | Adam      | 0.0001 |      5 |       True |             92.16 |         446,441 |         0.0332 |      11.18 |
+| GPU     | ResNet-34 |         16 | SGD       |  0.001 |      5 |       True |             91.81 |         735,832 |         0.0699 |      21.28 |
+| CPU     | ResNet-34 |         16 | Adam      |  0.001 |      5 |       True |             89.32 |       1,789,542 |         0.0699 |      21.28 |
+| CPU     | ResNet-34 |         32 | SGD       |  0.001 |      5 |       True |             85.69 |         627,229 |         0.0699 |      21.28 |
+| GPU     | ResNet-34 |         32 | Adam      |  0.001 |      5 |       True |             91.42 |       1,136,055 |         0.0699 |      21.28 |
+| CPU     | ResNet-50 |         16 | SGD       |  0.001 |      5 |       True |             90.73 |       1,899,157 |         0.0788 |      23.52 |
 
 The results from Question 1(a) show that both ResNet-18 and ResNet-50 achieve extremely high classification accuracy on MNIST, consistently above 99% across all hyperparameter settings. This indicates that MNIST is a relatively simple dataset for modern convolutional architectures, and performance saturates quickly regardless of optimizer choice or batch size. Small variations can still be observed: SGD with a slightly higher learning rate (0.001) tends to provide strong stability, while Adam achieves comparable accuracy with faster convergence in fewer epochs. The effect of pin_memory is minimal in terms of accuracy, suggesting that it primarily influences data loading efficiency rather than model generalization. Overall, both architectures perform nearly optimally, with ResNet-50 occasionally providing marginal improvements but not a significant advantage given the simplicity of the dataset.
 
