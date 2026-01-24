@@ -15,23 +15,27 @@ from tqdm import tqdm
 # ============================================================
 # CONFIG
 # ============================================================
-DATASETS = ["MNIST", "FashionMNIST"]
+# DATASETS = ["MNIST", "FashionMNIST"]
+
+DATASETS = ["FashionMNIST"]
+
 
 MODELS = {
-    "resnet18": models.resnet18,
+    # "resnet18": models.resnet18,
+    "resnet34": models.resnet34,
     "resnet50": models.resnet50
 }
 
 BATCH_SIZES = [16, 32]
 OPTIMIZERS = ["sgd", "adam"]
-LRS = [1e-3, 1e-4]
-EPOCHS_LIST = [5, 15]
-PIN_MEMORY_LIST = [False, True]
+LRS = [1e-3]
+EPOCHS_LIST = [5]
+PIN_MEMORY_LIST = [True]
 
 USE_AMP = True
 NUM_CLASSES = 10
 
-DEVICE_LIST = ["cuda"] if torch.cuda.is_available() else ["cpu"]
+DEVICE_LIST = ["cuda", "cpu"] if torch.cuda.is_available() else ["cpu"]
 
 DL_RESULTS_PATH = "results/dl_ablation_results.jsonl"
 SVM_RESULTS_PATH = "results/svm_results.jsonl"
@@ -39,8 +43,8 @@ SVM_RESULTS_PATH = "results/svm_results.jsonl"
 os.makedirs("results", exist_ok=True)
 
 # Clear previous runs
-open(DL_RESULTS_PATH, "w").close()
-open(SVM_RESULTS_PATH, "w").close()
+# open(DL_RESULTS_PATH, "w").close()
+# open(SVM_RESULTS_PATH, "w").close()
 
 torch.backends.cudnn.benchmark = True
 
@@ -284,9 +288,9 @@ def run_svm_experiments():
 # ============================================================
 if __name__ == "__main__":
     print("Running Deep Learning Experiments...")
-    # run_dl_experiments()
+    run_dl_experiments()
 
     print("Running SVM Experiments...")
-    run_svm_experiments()
+    # run_svm_experiments()
 
     print("All experiments completed.")
