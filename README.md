@@ -60,3 +60,17 @@ The results from Question 1(a) show that both ResNet-18 and ResNet-50 achieve ex
 In Question 1(b), the SVM baselines demonstrate strong performance on MNIST, reaching around 96% accuracy with the RBF kernel, but accuracy drops significantly on FashionMNIST, where the best result is 85.31%. This highlights the increased complexity of FashionMNIST, where class boundaries are less separable in raw pixel space and require deeper feature extraction. The RBF kernel consistently outperforms the polynomial kernel, confirming that non-linear decision boundaries are better suited for these datasets. However, compared to deep ResNet models, SVM performance remains limited, especially for FashionMNIST, showing the benefit of representation learning in CNNs.
 
 The results from Question 2 further emphasize the trade-off between model complexity and efficiency on FashionMNIST. ResNet-18 achieves the best accuracy (92.66%) with Adam and longer training (15 epochs), while maintaining the lowest FLOPs and parameter count, making it computationally efficient. ResNet-34 and ResNet-50 require significantly more compute and training time, yet they do not consistently outperform ResNet-18. In fact, deeper models sometimes show reduced accuracy, likely due to optimization difficulty and overfitting on a dataset of moderate complexity. These findings suggest that for FashionMNIST, smaller architectures such as ResNet-18 provide the best balance of accuracy and efficiency, while deeper networks incur higher computational cost without proportional performance gains.
+
+## Assignment 2 — Data Contracts & YAML
+
+This submission adds four data contract files based on the assignment scenarios:
+
+1. `rides_contract.yaml` — Ride-sharing events contract (logical renaming, PII tagging, SLA, hard quality rules, negotiation summary).
+2. `orders_contract.yaml` — E-commerce orders contract (logical enum mapping, non-negative total, invalid status rejection).
+3. `thermostat_contract.yaml` — IoT thermostat telemetry (temperature and battery range checks).
+4. `fintech_contract.yaml` — FinTech transaction log (account ID regex validation with hard circuit breaker).
+
+### Validation (Recommended)
+
+- Use any YAML validator (e.g., yamllint.com) to confirm indentation and syntax.
+- Verify each quality rule against the scenario requirements and boundary cases.
