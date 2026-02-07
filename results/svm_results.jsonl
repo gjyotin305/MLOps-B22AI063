@@ -1,4 +1,0 @@
-{"dataset": "MNIST", "model": "svm-rbf", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 95.94, "train_time_ms": 7921.43988609314}
-{"dataset": "MNIST", "model": "svm-poly", "kernel": "poly", "train_samples": 10000, "test_accuracy": 95.15, "train_time_ms": 8648.066520690918}
-{"dataset": "FashionMNIST", "model": "svm-rbf", "kernel": "rbf", "train_samples": 10000, "test_accuracy": 85.31, "train_time_ms": 8499.988079071045}
-{"dataset": "FashionMNIST", "model": "svm-poly", "kernel": "poly", "train_samples": 10000, "test_accuracy": 81.66, "train_time_ms": 8452.374458312988}
