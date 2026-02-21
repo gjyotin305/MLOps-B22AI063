@@ -60,6 +60,16 @@ Evaluating: 100%|██████████| 4/4 [00:14<00:00,  3.66s/batch,
 | ship | 92.00% |
 | truck | 74.00% |
 
+## Visualizations
+
+### Confusion Matrix
+
+![Confusion Matrix](./image1.png)
+
+### Class-wise Accuracy Bar Graph
+
+![Class-wise Accuracy Bar Graph](./image2.png)
+
 ## Classification Report
 
 ```text
