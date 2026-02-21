@@ -26,8 +26,8 @@ BATCH_SIZE = 256
 NUM_CLASSES = 10
 EPOCHS = 3
 LR = 1e-3
-DEVICE="mps"
-# DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# DEVICE="mps"
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 WANDB_PROJECT = os.getenv("WANDB_PROJECT", "cifar10-resnet18")
 WANDB_RUN_NAME = os.getenv("WANDB_RUN_NAME", "hf-train")
 

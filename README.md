@@ -1,80 +1,53 @@
-# Assignment: Fine-tuning ModernBERT on GLUE MRPC
+# MLOps-B22AI063
 
 **Name:** Jyotin Goel  
-**Roll Number:** B22AI063  
-**Task:** Paraphrase classification on the Microsoft Research Paraphrase Corpus (MRPC)
+**Roll Number:** B22AI063
 
-## Links
+This repository contains image classification workflows with Dockerized training/evaluation, Hugging Face model hosting, and experiment tracking.
 
-- **GitHub Repository:** https://github.com/gjyotin305/MLOps-B22AI063/tree/assignment-3
-- **Hugging Face Model:** https://huggingface.co/gjyotin305/modernbert_b22ai063
+## Repository Sections
 
-## Objective
+- `Set B/`:
+  - ResNet-18 training/evaluation pipeline with local checkpoint-based evaluation.
+  - README: `Set B/README.md`
+- `HF/`:
+  - Hugging Face hosted checkpoint evaluation and W&B logging/visual reporting.
+  - README: `HF/README.md`
 
-Fine-tune a pre-trained **ModernBERT** model on the **GLUE MRPC** task and report validation performance using:
-- Accuracy
-- F1 score
+## Quick Links
 
-## Model and Task
+- ResNet-18 HF Model: https://huggingface.co/gjyotin305/minor_resnet18/tree/main
+- W&B Report (HF run): https://wandb.ai/gjyotin1724/cifar10-resnet18/reports/Hugging-Face-Question-2-Minor-B22AI063--VmlldzoxNTk5NTE4NA?accessToken=e1dikprz1hnesvfhtrds7pgnclgdcqhps4shr5psla44zvcw6q7uhluutlr1kgqb
 
-- **Model:** ModernBERT (sequence classification)
-- **Dataset:** GLUE MRPC
-- **Problem type:** Binary classification (paraphrase / not paraphrase)
+## Key Results Summary
 
-## Training Configuration
+### Set B: ResNet-18 Local Evaluation
 
-| Parameter | Value |
-| --- | --- |
-| `output_dir` | `aai_ModernBERT_mrpc_ft` |
-| `per_device_train_batch_size` | 32 |
-| `num_train_epochs` | 2 |
-| `max_steps` | -1 |
-| `learning_rate` | 8e-5 |
-| `lr_scheduler_type` | linear |
-| `warmup_steps` | 0 |
-| `optim` | `adamw_torch` |
-| `do_train` | `True` |
-| `do_eval` | `True` |
-| `do_predict` | `False` |
+- Overall Accuracy: **96.64%**
+- F1 Score: **0.9658**
+- Includes confusion matrix, classification report, and fixed-image prediction (`data/test/7/6561.png`).
 
-## Tokenizer/Config Alignment Note
+### HF Evaluation (Hosted Checkpoint)
 
-During training, tokenizer special tokens differed from model/generation config. Configs were aligned automatically:
+- Final Eval Loss: **0.6689**
+- Final Eval Accuracy: **79.10%**
+- Final Eval Macro F1: **0.7954**
+- Includes confusion matrix, class-wise accuracy, and classification report.
 
-- Updated keys: `eos_token_id`, `bos_token_id`
-- Updated values: `{'eos_token_id': None, 'bos_token_id': None}`
+## Docker Usage
 
-## Training Progress
+Refer to section-specific READMEs for exact commands:
 
-- Total optimization steps: **230/230**
-- Total training time: **~4m 29s**
-- Epochs completed: **2/2**
+- `Set B/README.md` for local train/eval Docker workflows.
+- `HF/README.md` for HF train/eval Docker workflows.
 
-## Validation Metrics by Epoch
+## Prompts Used (ChatGPT)
 
-| Epoch | Training Loss | Validation Loss | Accuracy | F1 |
-| ---: | ---: | ---: | ---: | ---: |
-| 1 | 0.507908 | 0.339598 | 0.850490 | 0.888483 |
-| 2 | 0.263230 | 0.292411 | **0.867647** | **0.904930** |
+ChatGPT was used mainly for:
 
-## Logged Metrics Snapshot
+- README drafting, structure cleanup, and result presentation.
+- Converting raw logs/metrics into formatted markdown tables and reports.
+- Suggesting diagram/visual section organization (confusion matrix and class-wise bar graph placement).
+- Minor code-assist prompts for boilerplate adjustments (Docker command docs, logging block formatting).
 
-| Step | train_loss | train_grad_norm | train_learning_rate | train_epoch | eval_loss | eval_accuracy_score | eval_f1_score |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 0.507908 | 3.34820 | 4.034783e-05 | 1.0 | 0.339598 | 0.850490 | 0.888483 |
-| 1 | 0.263230 | 6.91563 | 3.478261e-07 | 2.0 | 0.292411 | 0.867647 | 0.904930 |
-
-## Final Result
-
-After 2 epochs of fine-tuning ModernBERT on MRPC:
-
-- **Best Validation Accuracy:** `0.867647` (86.76%)
-- **Best Validation F1:** `0.904930` (90.49%)
-- **Final Validation Loss:** `0.292411`
-
-These results indicate strong paraphrase detection performance, with F1 exceeding 0.90 on validation.
-
-## Artifacts
-
-- Model checkpoints and shards are saved in the configured output directory:
-  - `aai_ModernBERT_mrpc_ft/`
+ChatGPT was **not** used as a replacement for model training/evaluation itself; all final metrics are from actual script runs in this repository.

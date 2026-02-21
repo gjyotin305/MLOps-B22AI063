@@ -26,7 +26,8 @@ RUN pip install --upgrade pip && \
       scikit-learn \
       tqdm \
       datasets \
-      huggingface_hub
+      huggingface_hub \
+      wandb 
 
 COPY . /app
 

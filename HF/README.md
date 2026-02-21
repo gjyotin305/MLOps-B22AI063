@@ -11,7 +11,7 @@ docker build -t run_eval_minor_hf:v1_train -f Dockerfile .
 
 ```bash
 docker run run_eval_minor_hf:v1_eval
-docker run run_eval_minor_hf:v1_train -e HF_TOKEN=<HF_TOKEN>
+docker run -e HF_TOKEN=<HF_TOKEN> run_eval_minor_hf:v1_train 
 ```
 
 ## Links
