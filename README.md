@@ -4,6 +4,11 @@
 **Roll Number:** B22AI063  
 **Task:** Paraphrase classification on the Microsoft Research Paraphrase Corpus (MRPC)
 
+## Links
+
+- **GitHub Repository:** https://github.com/gjyotin305/MLOps-B22AI063/tree/assignment-3
+- **Hugging Face Model:** https://huggingface.co/gjyotin305/modernbert_b22ai063
+
 ## Objective
 
 Fine-tune a pre-trained **ModernBERT** model on the **GLUE MRPC** task and report validation performance using:
@@ -73,4 +78,3 @@ These results indicate strong paraphrase detection performance, with F1 exceedin
 
 - Model checkpoints and shards are saved in the configured output directory:
   - `aai_ModernBERT_mrpc_ft/`
-
