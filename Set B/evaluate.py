@@ -88,6 +88,10 @@ print(f"\nOverall Accuracy: {overall_acc * 100:.2f}%")
 macro_f1 = f1_score(all_labels, all_preds, average='macro')
 print(f"F1 Score: {macro_f1:.4f}")
 
+cm = confusion_matrix(all_labels, all_preds)
+print("\nConfusion Matrix:")
+print(cm)
+
 print("\nClassification Report:")
 print(classification_report(all_labels, all_preds, target_names=class_names))
 
