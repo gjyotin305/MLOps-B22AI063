@@ -32,4 +32,4 @@ RUN pip install --upgrade pip && \
 COPY . /app
 
 # Run either training or evaluation based on MODE (train|evaluate)
-CMD ["sh", "-c", "if [ \"$MODE\" = \"train\" ]; then python train.py; elif [ \"$MODE\" = \"evaluate\" ]; then python eval.py; else echo \"Invalid MODE: $MODE (use train or evaluate)\" && exit 1; fi"]
+CMD ["sh", "-c", "if [ -n \"$WANDB_API_KEY\" ]; then wandb login --relogin \"$WANDB_API_KEY\"; else echo \"WANDB_API_KEY not set, skipping wandb login\"; fi; if [ \"$MODE\" = \"train\" ]; then python train.py; elif [ \"$MODE\" = \"evaluate\" ]; then python eval.py; else echo \"Invalid MODE: $MODE (use train or evaluate)\" && exit 1; fi"]
