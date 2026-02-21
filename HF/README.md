@@ -1,5 +1,19 @@
 # HF Evaluation (ResNet-18 on CIFAR-10 Subset)
 
+## How to build
+
+```bash
+docker build -t run_eval_minor_hf:v1_eval -f Dockerfile.eval .
+docker build -t run_eval_minor_hf:v1_train -f Dockerfile .
+```
+
+## How to run:
+
+```bash
+docker run run_eval_minor_hf:v1_eval
+docker run run_eval_minor_hf:v1_train -e HF_TOKEN=<HF_TOKEN>
+```
+
 ## Links
 
 - HF Model: https://huggingface.co/gjyotin305/minor_resnet18/tree/main

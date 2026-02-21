@@ -1,5 +1,19 @@
 # Set B: ResNet-18 Evaluation Results (CIFAR-10)
 
+## How to build
+
+```bash
+docker build -t run_eval_minor:v1_eval -f Dockerfile.eval .
+docker build -t run_eval_minor:v1_train -f Dockerfile .
+```
+
+## How to run
+
+```bash
+docker run run_eval_minor:v1_eval 
+docker run run_eval_minor:v1_train
+```
+
 ### Final Metrics
 
 | Metric | Value |
