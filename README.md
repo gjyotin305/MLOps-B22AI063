@@ -1,80 +1,174 @@
-# Assignment: Fine-tuning ModernBERT on GLUE MRPC
+# Assignment 4: Optimizing Transformer Translation with Ray Tune + Optuna
 
 **Name:** Jyotin Goel  
-**Roll Number:** B22AI063  
-**Task:** Paraphrase classification on the Microsoft Research Paraphrase Corpus (MRPC)
-
-## Links
-
-- **GitHub Repository:** https://github.com/gjyotin305/MLOps-B22AI063/tree/assignment-3
-- **Hugging Face Model:** https://huggingface.co/gjyotin305/modernbert_b22ai063
+**Roll Number:** B22AI063
 
 ## Objective
 
-Fine-tune a pre-trained **ModernBERT** model on the **GLUE MRPC** task and report validation performance using:
-- Accuracy
-- F1 score
+Optimize a custom PyTorch Transformer for **English -> Hindi** translation by replacing fixed hyperparameters with a **Ray Tune + Optuna** search workflow, and achieve baseline BLEU in fewer epochs.
 
-## Model and Task
+## Assignment Link
 
-- **Model:** ModernBERT (sequence classification)
-- **Dataset:** GLUE MRPC
-- **Problem type:** Binary classification (paraphrase / not paraphrase)
+- Google Drive: https://drive.google.com/drive/folders/19fhUruT03NkYp6u0uax-zjaZ6dZHUjzz?usp=sharing
+- Best Model (Hugging Face): https://huggingface.co/gjyotin305/assignment_4_model/tree/main
 
-## Training Configuration
+## Submission Requirements
 
-| Parameter | Value |
+Push the following artifacts to your GitHub repository:
+
+1. `B22AI063_ass_4_tuned_en_to_hi.ipynb` (or `.py`)  
+   Refactored notebook/script with Ray Tune + Optuna implementation.
+2. `B22AI063_ass_4_report.pdf`  
+   1-2 page report including:
+   - Baseline metrics (time, final loss, BLEU at 100 epochs)
+   - 4+ tuned hyperparameters and their ranges
+   - Best configuration found
+   - Final metrics of best model (time, final loss, BLEU)
+   - Epoch count required to match/beat baseline
+3. `B22AI063_ass_4_best_model`  
+   Best checkpoint from tuning sweep.
+
+## Grading Rubric
+
+- Baseline Execution: **10%**
+- Code Refactoring (Ray-compatible training loop): **20%**
+- Hyperparameter Setup + Optuna Search: **30%**
+- Efficiency Goal (match/beat baseline BLEU using <= X epochs): **20%**
+- Report Quality: **20%**
+
+## Part 1: Baseline (Mandatory)
+
+Run `en_to_hi.ipynb` **without changing architecture/hyperparameters**.
+
+Record:
+
+- Total training time for 100 epochs
+- Final training loss
+- Final BLEU score (from NLTK evaluation cell)
+
+Keep baseline weights:
+
+- `transformer_translation_final`
+
+### Baseline Log Template
+
+| Metric | Value |
 | --- | --- |
-| `output_dir` | `aai_ModernBERT_mrpc_ft` |
-| `per_device_train_batch_size` | 32 |
-| `num_train_epochs` | 2 |
-| `max_steps` | -1 |
-| `learning_rate` | 8e-5 |
-| `lr_scheduler_type` | linear |
-| `warmup_steps` | 0 |
-| `optim` | `adamw_torch` |
-| `do_train` | `True` |
-| `do_eval` | `True` |
-| `do_predict` | `False` |
+| Train Time (100 epochs) |  |
+| Final Train Loss |  |
+| Final BLEU |  |
 
-## Tokenizer/Config Alignment Note
+## Part 2: Refactor for Ray Tune + Optuna
 
-During training, tokenizer special tokens differed from model/generation config. Configs were aligned automatically:
+### 2.1 Create Ray-compatible train function
 
-- Updated keys: `eos_token_id`, `bos_token_id`
-- Updated values: `{'eos_token_id': None, 'bos_token_id': None}`
+Refactor to:
 
-## Training Progress
+- `train_tune(config)`
+- Initialize model/optimizer/criterion from `config`
+- Report per-epoch metrics using:
 
-- Total optimization steps: **230/230**
-- Total training time: **~4m 29s**
-- Epochs completed: **2/2**
+```python
+ray.train.report({"loss": epoch_loss, "bleu": bleu_score, "epoch": epoch})
+```
 
-## Validation Metrics by Epoch
+### 2.2 Define Hyperparameter Search Space (>= 4 params)
 
-| Epoch | Training Loss | Validation Loss | Accuracy | F1 |
-| ---: | ---: | ---: | ---: | ---: |
-| 1 | 0.507908 | 0.339598 | 0.850490 | 0.888483 |
-| 2 | 0.263230 | 0.292411 | **0.867647** | **0.904930** |
+Suggested search space:
 
-## Logged Metrics Snapshot
+```python
+from ray import tune
 
-| Step | train_loss | train_grad_norm | train_learning_rate | train_epoch | eval_loss | eval_accuracy_score | eval_f1_score |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 0.507908 | 3.34820 | 4.034783e-05 | 1.0 | 0.339598 | 0.850490 | 0.888483 |
-| 1 | 0.263230 | 6.91563 | 3.478261e-07 | 2.0 | 0.292411 | 0.867647 | 0.904930 |
+param_space = {
+    "lr": tune.loguniform(1e-5, 1e-3),
+    "batch_size": tune.choice([16, 32, 64]),
+    "num_heads": tune.choice([4, 8]),
+    "d_ff": tune.choice([1024, 2048]),
+    "dropout": tune.uniform(0.1, 0.4),
+    "epochs": 40,
+}
+```
 
-## Final Result
+Note: Ensure `d_model % num_heads == 0`.
 
-After 2 epochs of fine-tuning ModernBERT on MRPC:
+### 2.3 Configure Tuner with Optuna
 
-- **Best Validation Accuracy:** `0.867647` (86.76%)
-- **Best Validation F1:** `0.904930` (90.49%)
-- **Final Validation Loss:** `0.292411`
+```python
+from ray import tune
+from ray.tune.search.optuna import OptunaSearch
+from ray.tune.schedulers import ASHAScheduler
 
-These results indicate strong paraphrase detection performance, with F1 exceeding 0.90 on validation.
+optuna_search = OptunaSearch(metric="loss", mode="min")
+asha = ASHAScheduler(metric="loss", mode="min", max_t=40, grace_period=5)
 
-## Artifacts
+tuner = tune.Tuner(
+    train_tune,
+    tune_config=tune.TuneConfig(
+        search_alg=optuna_search,
+        scheduler=asha,
+        num_samples=20,
+    ),
+    param_space=param_space,
+)
 
-- Model checkpoints and shards are saved in the configured output directory:
-  - `aai_ModernBERT_mrpc_ft/`
+results = tuner.fit()
+best_result = results.get_best_result(metric="loss", mode="min")
+print(best_result.config)
+```
+
+### Best Configuration Found
+
+```json
+{
+  "lr": 0.00012752212408379722,
+  "batch_size": 16,
+  "num_heads": 4,
+  "d_ff": 1024,
+  "dropout": 0.2810754004322514,
+  "max_epochs": 40
+}
+```
+
+## Part 3: Efficiency Challenge
+
+Goal:
+
+- Match or exceed baseline BLEU (reference target >= `0.50`) using **significantly fewer than 100 epochs** per trial.
+- Cap each tuning trial at `X` epochs (`X < 100`).
+
+Recommended:
+
+- Use **ASHA** to early-stop weak trials
+- Track both `loss` and `bleu`
+- Save best checkpoint automatically
+
+## Expected Repository Structure
+
+```text
+.
+├── B22AI063_ass_4_tuned_en_to_hi.ipynb
+├── B22AI063_ass_4_report.pdf
+├── B22AI063_ass_4_best_model
+├── en_to_hi.ipynb
+├── tuned_train.py                 # optional .py variant
+└── README.md
+```
+
+## Report Checklist (1-2 pages)
+
+- Baseline metrics table
+- Tuned hyperparameters + ranges
+- Best configuration block
+- Best model metrics vs baseline (time/loss/BLEU)
+- Epoch efficiency comparison (`100` vs best trial epochs)
+- Short conclusion: what mattered most in convergence
+
+## AI Assistance Disclosure
+
+ChatGPT was used for:
+
+- Documentation drafting/formatting
+- Experiment reporting structure
+- Boilerplate code skeletons for Ray Tune/Optuna setup
+
+Model training, metric generation, and final conclusions were based on actual runs in this repository.
