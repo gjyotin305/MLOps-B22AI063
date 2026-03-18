@@ -38,4 +38,4 @@ COPY finetune_and_eval.py /app/finetune_and_eval.py
 # docker run --gpus all -e HF_TOKEN=... <image>
 ENV HF_HOME=/tmp/huggingface
 
-CMD ["python", "finetune_and_eval.py"]
+CMD ["python", "B22AI063_ass_4_tuned_en_to_hi.py"]
