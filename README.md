@@ -54,9 +54,23 @@ Keep baseline weights:
 
 | Metric | Value |
 | --- | --- |
-| Train Time (100 epochs) |  |
-| Final Train Loss |  |
-| Final BLEU |  |
+| GPU | RTX A5000 |
+| Train Time (100 epochs, with `torch.compile`) | ~30-40 minutes |
+| Final BLEU (NLTK) | 63.47 (`0.6347346879982754`) |
+
+## Actual Run Results
+
+### Baseline (100 epochs, `torch.compile`)
+
+- GPU: **RTX A5000**
+- Time: **~30-40 minutes**
+- BLEU (NLTK): **63.47**
+- BLEU (raw): `0.6347346879982754`
+
+### After Optimization (Ray Tune + Optuna)
+
+- BLEU (NLTK): **25.88**
+- BLEU (raw): `0.2587952182172276`
 
 ## Part 2: Refactor for Ray Tune + Optuna
 
