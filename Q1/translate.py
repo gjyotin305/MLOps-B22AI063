@@ -17,11 +17,11 @@ except ImportError as exc:
 
 
 MODEL_NAME = "Helsinki-NLP/opus-mt-bn-en"
-DEFAULT_INPUT = Path("Q1/data/input.rtf")
-DEFAULT_OUTPUT = Path("Q1/output.txt")
-DEFAULT_EVAL_FILE = Path("Q1/data/output.rtf")
+DEFAULT_INPUT = Path("./data/input.rtf")
+DEFAULT_OUTPUT = Path("./output.txt")
+DEFAULT_EVAL_FILE = Path("./data/output.rtf")
 DEFAULT_OUTPUT_HEADER = "# reference_english.txt"
-DEFAULT_REFERENCE = Path("Q1/data/output.rtf")
+DEFAULT_REFERENCE = Path("./data/output.rtf")
 
 
 def parse_args() -> argparse.Namespace:
