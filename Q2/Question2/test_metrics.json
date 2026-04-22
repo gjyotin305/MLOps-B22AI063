@@ -1,0 +1,15 @@
+{
+  "seed": 42,
+  "epochs": 15,
+  "batch_size": 8,
+  "image_size": [
+    160,
+    120
+  ],
+  "train_samples": 848,
+  "test_samples": 212,
+  "final_test_miou": 0.6297723054885864,
+  "final_test_mdice": 0.7168420553207397,
+  "best_test_miou": 0.6297723054885864,
+  "best_test_mdice": 0.7168420553207397
+}

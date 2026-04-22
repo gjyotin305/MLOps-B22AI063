@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<rect width="100%" height="100%" fill="#fffaf2"/>
+<text x="450.0" y="32" text-anchor="middle" font-size="24" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">Training Loss Curve</text>
+<line x1="80" y1="55" x2="80" y2="450" stroke="#374151" stroke-width="2"/>
+<line x1="80" y1="450" x2="870" y2="450" stroke="#374151" stroke-width="2"/>
+<line x1="80" y1="450.00" x2="870" y2="450.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="455.00" text-anchor="end" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">0.1579</text>
+<line x1="80" y1="371.00" x2="870" y2="371.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="376.00" text-anchor="end" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">0.3798</text>
+<line x1="80" y1="292.00" x2="870" y2="292.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="297.00" text-anchor="end" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">0.6017</text>
+<line x1="80" y1="213.00" x2="870" y2="213.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="218.00" text-anchor="end" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">0.8236</text>
+<line x1="80" y1="134.00" x2="870" y2="134.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="139.00" text-anchor="end" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">1.0456</text>
+<line x1="80" y1="55.00" x2="870" y2="55.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="60.00" text-anchor="end" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">1.2675</text>
+<line x1="80.00" y1="55" x2="80.00" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="80.00" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">1</text>
+<line x1="136.43" y1="55" x2="136.43" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="136.43" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">2</text>
+<line x1="192.86" y1="55" x2="192.86" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="192.86" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">3</text>
+<line x1="249.29" y1="55" x2="249.29" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="249.29" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">4</text>
+<line x1="305.71" y1="55" x2="305.71" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="305.71" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">5</text>
+<line x1="362.14" y1="55" x2="362.14" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="362.14" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">6</text>
+<line x1="418.57" y1="55" x2="418.57" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="418.57" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">7</text>
+<line x1="475.00" y1="55" x2="475.00" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="475.00" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">8</text>
+<line x1="531.43" y1="55" x2="531.43" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="531.43" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">9</text>
+<line x1="587.86" y1="55" x2="587.86" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="587.86" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">10</text>
+<line x1="644.29" y1="55" x2="644.29" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="644.29" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">11</text>
+<line x1="700.71" y1="55" x2="700.71" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="700.71" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">12</text>
+<line x1="757.14" y1="55" x2="757.14" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="757.14" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">13</text>
+<line x1="813.57" y1="55" x2="813.57" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="813.57" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">14</text>
+<line x1="870.00" y1="55" x2="870.00" y2="450" stroke="#f3f4f6" stroke-width="1"/>
+<text x="870.00" y="472" text-anchor="middle" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#4b5563">15</text>
+<polyline fill="none" stroke="#dc2626" stroke-width="4" points="80.00,87.92 136.43,260.37 192.86,304.52 249.29,331.31 305.71,351.74 362.14,366.05 418.57,378.11 475.00,389.34 531.43,398.00 587.86,404.28 644.29,408.60 700.71,412.18 757.14,414.35 813.57,415.75 870.00,417.08"/>
+<circle cx="80.00" cy="87.92" r="4.5" fill="#1d4ed8"/>
+<text x="80.00" y="77.92" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">1.1750</text>
+<circle cx="136.43" cy="260.37" r="4.5" fill="#1d4ed8"/>
+<text x="136.43" y="250.37" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.6906</text>
+<circle cx="192.86" cy="304.52" r="4.5" fill="#1d4ed8"/>
+<text x="192.86" y="294.52" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.5666</text>
+<circle cx="249.29" cy="331.31" r="4.5" fill="#1d4ed8"/>
+<text x="249.29" y="321.31" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.4913</text>
+<circle cx="305.71" cy="351.74" r="4.5" fill="#1d4ed8"/>
+<text x="305.71" y="341.74" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.4339</text>
+<circle cx="362.14" cy="366.05" r="4.5" fill="#1d4ed8"/>
+<text x="362.14" y="356.05" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.3937</text>
+<circle cx="418.57" cy="378.11" r="4.5" fill="#1d4ed8"/>
+<text x="418.57" y="368.11" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.3598</text>
+<circle cx="475.00" cy="389.34" r="4.5" fill="#1d4ed8"/>
+<text x="475.00" y="379.34" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.3283</text>
+<circle cx="531.43" cy="398.00" r="4.5" fill="#1d4ed8"/>
+<text x="531.43" y="388.00" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.3039</text>
+<circle cx="587.86" cy="404.28" r="4.5" fill="#1d4ed8"/>
+<text x="587.86" y="394.28" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.2863</text>
+<circle cx="644.29" cy="408.60" r="4.5" fill="#1d4ed8"/>
+<text x="644.29" y="398.60" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.2742</text>
+<circle cx="700.71" cy="412.18" r="4.5" fill="#1d4ed8"/>
+<text x="700.71" y="402.18" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.2641</text>
+<circle cx="757.14" cy="414.35" r="4.5" fill="#1d4ed8"/>
+<text x="757.14" y="404.35" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.2580</text>
+<circle cx="813.57" cy="415.75" r="4.5" fill="#1d4ed8"/>
+<text x="813.57" y="405.75" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.2541</text>
+<circle cx="870.00" cy="417.08" r="4.5" fill="#1d4ed8"/>
+<text x="870.00" y="407.08" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">0.2503</text>
+<text x="450.0" y="502" text-anchor="middle" font-size="16" font-family="Helvetica, Arial, sans-serif" fill="#1f2937">Epoch</text>
+<text x="24" y="260.0" text-anchor="middle" font-size="16" font-family="Helvetica, Arial, sans-serif" fill="#1f2937" transform="rotate(-90, 24, 260.0)">Loss</text>
+</svg>
