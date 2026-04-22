@@ -23,7 +23,7 @@ RUN uv pip install --no-cache \
     torch torchvision torchaudio \
     --index-url https://download.pytorch.org/whl/cu121 \
     && uv pip install --no-cache \
-    transformers \
+    transformers==4.51.2 \
     sentencepiece \
     striprtf \
     sacrebleu

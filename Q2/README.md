@@ -12,7 +12,7 @@ This folder contains a custom dataloader and a UNet-based semantic segmentation 
 Use the existing virtual environment from `Q1/.venv`:
 
 ```bash
-Q1/.venv/bin/python Q2/train_unet.py --epochs 15
+python Q2/train_unet.py --epochs 15
 ```
 
 The command writes the following outputs to the repo-level `Question2/` folder:
@@ -23,3 +23,17 @@ The command writes the following outputs to the repo-level `Question2/` folder:
 - `metrics_history.csv`
 - `test_metrics.json`
 - `best_unet_model.pt`
+
+## App
+
+The deployed frontend for Question 2 lives at `Q2/Question2/app.py`. It provides:
+
+- a training-metrics page with the saved loss, mIoU, and mDice plots plus test-set scores
+- a prediction page where you upload 4 test images and compare ground-truth vs predicted masks
+
+Install the UI dependency in the existing venv, then launch the app:
+
+```bash
+python -m pip install -r Q2/Question2/requirements_app.txt
+streamlit run Q2/Question2/app.py
+```
