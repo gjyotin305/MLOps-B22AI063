@@ -76,3 +76,41 @@ image = pipe(
 image.save("output.png")
 
 print("\n✅ Image saved as output.png")
+
+import time
+
+# =========================
+# BENCHMARK SETTINGS
+# =========================
+num_runs = 5
+steps = 20
+
+# Warmup (very important for GPU timing)
+_ = pipe(prompt, num_inference_steps=steps, guidance_scale=7.5).images[0]
+torch.cuda.synchronize()
+
+print("\n=== BENCHMARKING ===")
+
+times = []
+
+for i in range(num_runs):
+    start = time.time()
+
+    _ = pipe(
+        prompt,
+        num_inference_steps=steps,
+        guidance_scale=7.5
+    ).images[0]
+
+    torch.cuda.synchronize()  # ensure accurate GPU timing
+    end = time.time()
+
+    run_time = end - start
+    times.append(run_time)
+    print(f"Run {i+1}: {run_time:.4f} sec")
+
+avg_time = sum(times) / len(times)
+
+print("\n=== RESULTS ===")
+print(f"Average inference time ({num_runs} runs, {steps} steps): {avg_time:.4f} sec")
+print(f"Images/sec: {1/avg_time:.4f}")
