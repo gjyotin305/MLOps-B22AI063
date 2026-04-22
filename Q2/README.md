@@ -7,6 +7,10 @@ This folder contains a custom dataloader and a UNet-based semantic segmentation 
 - `dataloader.py`: builds paired RGB-mask samples, applies an 80/20 train-test split with seed `42`, and returns PyTorch dataloaders.
 - `train_unet.py`: trains a lightweight UNet for `23` classes, computes training and test metrics, and saves plots and artifacts in `Question2/`.
 
+Results:
+
+Question 2: mIOU: 0.629 and mDICE: 0.716
+
 ## Run
 
 Use the existing virtual environment from `Q1/.venv`:
